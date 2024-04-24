@@ -1,16 +1,34 @@
-# sorcerers_forge
+# SorcerersForge
 
-A new Flutter project.
+## Описание проекта
 
-## Getting Started
+SorcerersForge — это мобильное приложение, разработанное с использованием Flutter и Dart. Оно представляет из себя интерактивное приложение кузницы, где пользователи могут создавать, улучшать и заказывать различные магические предметы и инструменты.
 
-This project is a starting point for a Flutter application.
+## Технологический стек
 
-A few resources to get you started if this is your first Flutter project:
+- **Flutter**: Основной фреймворк для создания нативного пользовательского интерфейса на iOS и Android.
+- **Dart**: Язык программирования, используемый для разработки приложения.
+- **Bloc**: Библиотека для управления состоянием и внедрения бизнес-логики, обеспечивает разделение логики и интерфейса.
+- **Provider**: Используется для управления состоянием UI на уровне виджетов, облегчает доступ к данным в различных частях приложения.
+- **Dio**: Мощный HTTP-клиент для выполнения сетевых запросов и взаимодействия с API.
+- **Clean Architecture**: Архитектурный подход, который обеспечивает разделение ответственности и улучшает масштабируемость и поддерживаемость кода.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Установка и запуск проекта
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Для запуска проекта необходимо иметь установленные Flutter и Dart. После клонирования репозитория выполните следующие шаги:
+
+1. Перейдите в каталог проекта:
+   ```bash
+   cd sorcerersForge
+2. Установите необходимые зависимости:
+    bash
+    Copy code
+    flutter pub get
+3. Запустите приложение на выбранном устройстве или эмуляторе:
+    flutter run
+
+## Структура проекта
+
+- **Presentation Layer**: Слой пользовательского интерфейса, включающий виджеты и экраны.
+- **Business Logic Layer**: Слой, содержащий бизнес-логику приложения, реализован с использованием паттерна Bloc.
+- **Data Layer**: Слой отвечающий за работу с данными, включает взаимодействие с сетью и локальным хранилищем.
