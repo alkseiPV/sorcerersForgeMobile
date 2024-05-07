@@ -13,8 +13,10 @@ class LoadingProductsForYouState extends ProductsForYouStates {}
 
 class LoadedProductsForYouState extends ProductsForYouStates {
   final List<ProductModel>? products;
+  final List<ProductModel> defoltProducts;
 
-  LoadedProductsForYouState({required this.products});
+  LoadedProductsForYouState(
+      {required this.products, required this.defoltProducts});
 
   @override
   List<Object?> get props => [products];

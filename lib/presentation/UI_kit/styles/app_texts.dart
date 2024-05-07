@@ -22,7 +22,7 @@ class AppText {
   );
 
   static TextStyle infoText = TextStyle(
-      fontSize: 10.sp,
+      fontSize: 14.sp,
       color: AppColors.textSecondary,
       fontWeight: FontWeight.w400,
       fontFamily: 'RobotoSlab');

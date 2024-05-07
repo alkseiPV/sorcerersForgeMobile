@@ -16,7 +16,7 @@ class TeachingPage extends StatelessWidget {
       appBar: AppBar(),
       body: PageView(
         physics: const BouncingScrollPhysics(),
-        children: <Widget>[
+        children: const <Widget>[
           Step1Teach(),
           Step2Teach(),
           Step3Teach(),

@@ -8,8 +8,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i19;
-import 'package:flutter/material.dart' as _i20;
+import 'package:auto_route/auto_route.dart' as _i20;
+import 'package:flutter/material.dart' as _i21;
 import 'package:sourcerers_forge/presentation/app.dart' as _i2;
 import 'package:sourcerers_forge/presentation/authorization_screen/view/login_page.dart'
     as _i9;
@@ -26,7 +26,7 @@ import 'package:sourcerers_forge/presentation/catalog_screen/views/catalog_page.
 import 'package:sourcerers_forge/presentation/catalog_screen/views/catalog_routes.dart'
     as _i5;
 import 'package:sourcerers_forge/presentation/catalog_screen/views/subcatalog_page.dart'
-    as _i17;
+    as _i18;
 import 'package:sourcerers_forge/presentation/home_screen/views/home_page.dart'
     as _i8;
 import 'package:sourcerers_forge/presentation/navigation_panel.dart' as _i11;
@@ -41,116 +41,124 @@ import 'package:sourcerers_forge/presentation/profile_screen/views/profile_page.
 import 'package:sourcerers_forge/presentation/profile_screen/views/profile_routes.dart'
     as _i14;
 import 'package:sourcerers_forge/presentation/profile_screen/views/security_page.dart'
-    as _i16;
+    as _i17;
 import 'package:sourcerers_forge/presentation/profile_screen/views/teaching_page.dart'
-    as _i18;
+    as _i19;
+import 'package:sourcerers_forge/presentation/search_screen/views/search_page.dart'
+    as _i16;
 
-abstract class $AppRouter extends _i19.RootStackRouter {
+abstract class $AppRouter extends _i20.RootStackRouter {
   $AppRouter({super.navigatorKey});
 
   @override
-  final Map<String, _i19.PageFactory> pagesMap = {
+  final Map<String, _i20.PageFactory> pagesMap = {
     AboutUsRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.AboutUsPage(),
       );
     },
     App.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.App(),
       );
     },
     BasketRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.BasketPage(),
       );
     },
     CatalogRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.CatalogPage(),
       );
     },
     CatalogWrapperRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i5.CatalogWrapperScreen()),
+        child: _i20.WrappedRoute(child: const _i5.CatalogWrapperScreen()),
       );
     },
     CreateCompleteRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i6.CreateCompletePage(),
       );
     },
     CreateOrderRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i7.CreateOrderPage(),
       );
     },
     HomeRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i8.HomePage(),
       );
     },
     LoginRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i9.LoginPage(),
       );
     },
     MyDataRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i10.MyDataPage(),
       );
     },
     NavigationPanel.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i11.NavigationPanel(),
       );
     },
     PersonalOrderRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i12.PersonalOrderPage(),
       );
     },
     ProfileRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i13.ProfilePage(),
       );
     },
     ProfileWrapperRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.WrappedRoute(child: const _i14.ProfileWrapperScreen()),
+        child: _i20.WrappedRoute(child: const _i14.ProfileWrapperScreen()),
       );
     },
     RegistrationRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i15.RegistrationPage(),
       );
     },
-    SecurityRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+    SearchRoute.name: (routeData) {
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i16.SecurityPage(),
+        child: const _i16.SearchPage(),
+      );
+    },
+    SecurityRoute.name: (routeData) {
+      return _i20.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i17.SecurityPage(),
       );
     },
     SubCatalogRoute.name: (routeData) {
       final args = routeData.argsAs<SubCatalogRouteArgs>();
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i17.SubCatalogPage(
+        child: _i18.SubCatalogPage(
           key: args.key,
           catalogName: args.catalogName,
           idCategory: args.idCategory,
@@ -158,9 +166,9 @@ abstract class $AppRouter extends _i19.RootStackRouter {
       );
     },
     TeachingRoute.name: (routeData) {
-      return _i19.AutoRoutePage<dynamic>(
+      return _i20.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i18.TeachingPage(),
+        child: const _i19.TeachingPage(),
       );
     },
   };
@@ -168,8 +176,8 @@ abstract class $AppRouter extends _i19.RootStackRouter {
 
 /// generated route for
 /// [_i1.AboutUsPage]
-class AboutUsRoute extends _i19.PageRouteInfo<void> {
-  const AboutUsRoute({List<_i19.PageRouteInfo>? children})
+class AboutUsRoute extends _i20.PageRouteInfo<void> {
+  const AboutUsRoute({List<_i20.PageRouteInfo>? children})
       : super(
           AboutUsRoute.name,
           initialChildren: children,
@@ -177,13 +185,13 @@ class AboutUsRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'AboutUsRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.App]
-class App extends _i19.PageRouteInfo<void> {
-  const App({List<_i19.PageRouteInfo>? children})
+class App extends _i20.PageRouteInfo<void> {
+  const App({List<_i20.PageRouteInfo>? children})
       : super(
           App.name,
           initialChildren: children,
@@ -191,13 +199,13 @@ class App extends _i19.PageRouteInfo<void> {
 
   static const String name = 'App';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.BasketPage]
-class BasketRoute extends _i19.PageRouteInfo<void> {
-  const BasketRoute({List<_i19.PageRouteInfo>? children})
+class BasketRoute extends _i20.PageRouteInfo<void> {
+  const BasketRoute({List<_i20.PageRouteInfo>? children})
       : super(
           BasketRoute.name,
           initialChildren: children,
@@ -205,13 +213,13 @@ class BasketRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'BasketRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i4.CatalogPage]
-class CatalogRoute extends _i19.PageRouteInfo<void> {
-  const CatalogRoute({List<_i19.PageRouteInfo>? children})
+class CatalogRoute extends _i20.PageRouteInfo<void> {
+  const CatalogRoute({List<_i20.PageRouteInfo>? children})
       : super(
           CatalogRoute.name,
           initialChildren: children,
@@ -219,13 +227,13 @@ class CatalogRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'CatalogRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.CatalogWrapperScreen]
-class CatalogWrapperRoute extends _i19.PageRouteInfo<void> {
-  const CatalogWrapperRoute({List<_i19.PageRouteInfo>? children})
+class CatalogWrapperRoute extends _i20.PageRouteInfo<void> {
+  const CatalogWrapperRoute({List<_i20.PageRouteInfo>? children})
       : super(
           CatalogWrapperRoute.name,
           initialChildren: children,
@@ -233,13 +241,13 @@ class CatalogWrapperRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'CatalogWrapperRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i6.CreateCompletePage]
-class CreateCompleteRoute extends _i19.PageRouteInfo<void> {
-  const CreateCompleteRoute({List<_i19.PageRouteInfo>? children})
+class CreateCompleteRoute extends _i20.PageRouteInfo<void> {
+  const CreateCompleteRoute({List<_i20.PageRouteInfo>? children})
       : super(
           CreateCompleteRoute.name,
           initialChildren: children,
@@ -247,13 +255,13 @@ class CreateCompleteRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'CreateCompleteRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i7.CreateOrderPage]
-class CreateOrderRoute extends _i19.PageRouteInfo<void> {
-  const CreateOrderRoute({List<_i19.PageRouteInfo>? children})
+class CreateOrderRoute extends _i20.PageRouteInfo<void> {
+  const CreateOrderRoute({List<_i20.PageRouteInfo>? children})
       : super(
           CreateOrderRoute.name,
           initialChildren: children,
@@ -261,13 +269,13 @@ class CreateOrderRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'CreateOrderRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i8.HomePage]
-class HomeRoute extends _i19.PageRouteInfo<void> {
-  const HomeRoute({List<_i19.PageRouteInfo>? children})
+class HomeRoute extends _i20.PageRouteInfo<void> {
+  const HomeRoute({List<_i20.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -275,13 +283,13 @@ class HomeRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i9.LoginPage]
-class LoginRoute extends _i19.PageRouteInfo<void> {
-  const LoginRoute({List<_i19.PageRouteInfo>? children})
+class LoginRoute extends _i20.PageRouteInfo<void> {
+  const LoginRoute({List<_i20.PageRouteInfo>? children})
       : super(
           LoginRoute.name,
           initialChildren: children,
@@ -289,13 +297,13 @@ class LoginRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'LoginRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i10.MyDataPage]
-class MyDataRoute extends _i19.PageRouteInfo<void> {
-  const MyDataRoute({List<_i19.PageRouteInfo>? children})
+class MyDataRoute extends _i20.PageRouteInfo<void> {
+  const MyDataRoute({List<_i20.PageRouteInfo>? children})
       : super(
           MyDataRoute.name,
           initialChildren: children,
@@ -303,13 +311,13 @@ class MyDataRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'MyDataRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i11.NavigationPanel]
-class NavigationPanel extends _i19.PageRouteInfo<void> {
-  const NavigationPanel({List<_i19.PageRouteInfo>? children})
+class NavigationPanel extends _i20.PageRouteInfo<void> {
+  const NavigationPanel({List<_i20.PageRouteInfo>? children})
       : super(
           NavigationPanel.name,
           initialChildren: children,
@@ -317,13 +325,13 @@ class NavigationPanel extends _i19.PageRouteInfo<void> {
 
   static const String name = 'NavigationPanel';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i12.PersonalOrderPage]
-class PersonalOrderRoute extends _i19.PageRouteInfo<void> {
-  const PersonalOrderRoute({List<_i19.PageRouteInfo>? children})
+class PersonalOrderRoute extends _i20.PageRouteInfo<void> {
+  const PersonalOrderRoute({List<_i20.PageRouteInfo>? children})
       : super(
           PersonalOrderRoute.name,
           initialChildren: children,
@@ -331,13 +339,13 @@ class PersonalOrderRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'PersonalOrderRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i13.ProfilePage]
-class ProfileRoute extends _i19.PageRouteInfo<void> {
-  const ProfileRoute({List<_i19.PageRouteInfo>? children})
+class ProfileRoute extends _i20.PageRouteInfo<void> {
+  const ProfileRoute({List<_i20.PageRouteInfo>? children})
       : super(
           ProfileRoute.name,
           initialChildren: children,
@@ -345,13 +353,13 @@ class ProfileRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'ProfileRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i14.ProfileWrapperScreen]
-class ProfileWrapperRoute extends _i19.PageRouteInfo<void> {
-  const ProfileWrapperRoute({List<_i19.PageRouteInfo>? children})
+class ProfileWrapperRoute extends _i20.PageRouteInfo<void> {
+  const ProfileWrapperRoute({List<_i20.PageRouteInfo>? children})
       : super(
           ProfileWrapperRoute.name,
           initialChildren: children,
@@ -359,13 +367,13 @@ class ProfileWrapperRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'ProfileWrapperRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i15.RegistrationPage]
-class RegistrationRoute extends _i19.PageRouteInfo<void> {
-  const RegistrationRoute({List<_i19.PageRouteInfo>? children})
+class RegistrationRoute extends _i20.PageRouteInfo<void> {
+  const RegistrationRoute({List<_i20.PageRouteInfo>? children})
       : super(
           RegistrationRoute.name,
           initialChildren: children,
@@ -373,13 +381,27 @@ class RegistrationRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'RegistrationRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i16.SecurityPage]
-class SecurityRoute extends _i19.PageRouteInfo<void> {
-  const SecurityRoute({List<_i19.PageRouteInfo>? children})
+/// [_i16.SearchPage]
+class SearchRoute extends _i20.PageRouteInfo<void> {
+  const SearchRoute({List<_i20.PageRouteInfo>? children})
+      : super(
+          SearchRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'SearchRoute';
+
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i17.SecurityPage]
+class SecurityRoute extends _i20.PageRouteInfo<void> {
+  const SecurityRoute({List<_i20.PageRouteInfo>? children})
       : super(
           SecurityRoute.name,
           initialChildren: children,
@@ -387,17 +409,17 @@ class SecurityRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'SecurityRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i17.SubCatalogPage]
-class SubCatalogRoute extends _i19.PageRouteInfo<SubCatalogRouteArgs> {
+/// [_i18.SubCatalogPage]
+class SubCatalogRoute extends _i20.PageRouteInfo<SubCatalogRouteArgs> {
   SubCatalogRoute({
-    _i20.Key? key,
+    _i21.Key? key,
     required String catalogName,
     required int idCategory,
-    List<_i19.PageRouteInfo>? children,
+    List<_i20.PageRouteInfo>? children,
   }) : super(
           SubCatalogRoute.name,
           args: SubCatalogRouteArgs(
@@ -410,8 +432,8 @@ class SubCatalogRoute extends _i19.PageRouteInfo<SubCatalogRouteArgs> {
 
   static const String name = 'SubCatalogRoute';
 
-  static const _i19.PageInfo<SubCatalogRouteArgs> page =
-      _i19.PageInfo<SubCatalogRouteArgs>(name);
+  static const _i20.PageInfo<SubCatalogRouteArgs> page =
+      _i20.PageInfo<SubCatalogRouteArgs>(name);
 }
 
 class SubCatalogRouteArgs {
@@ -421,7 +443,7 @@ class SubCatalogRouteArgs {
     required this.idCategory,
   });
 
-  final _i20.Key? key;
+  final _i21.Key? key;
 
   final String catalogName;
 
@@ -434,9 +456,9 @@ class SubCatalogRouteArgs {
 }
 
 /// generated route for
-/// [_i18.TeachingPage]
-class TeachingRoute extends _i19.PageRouteInfo<void> {
-  const TeachingRoute({List<_i19.PageRouteInfo>? children})
+/// [_i19.TeachingPage]
+class TeachingRoute extends _i20.PageRouteInfo<void> {
+  const TeachingRoute({List<_i20.PageRouteInfo>? children})
       : super(
           TeachingRoute.name,
           initialChildren: children,
@@ -444,5 +466,5 @@ class TeachingRoute extends _i19.PageRouteInfo<void> {
 
   static const String name = 'TeachingRoute';
 
-  static const _i19.PageInfo<void> page = _i19.PageInfo<void>(name);
+  static const _i20.PageInfo<void> page = _i20.PageInfo<void>(name);
 }

@@ -16,9 +16,11 @@ class ProductsForYouBloc
       emit(LoadingProductsForYouState());
       try {
         List<ProductModel> products = await catalogUseCases.loadAllProducts();
+        List<ProductModel> defoltproducts = List.from(products);
         products.shuffle();
         List<ProductModel> randomProducts = products.take(6).toList();
-        emit(LoadedProductsForYouState(products: randomProducts));
+        emit(LoadedProductsForYouState(
+            products: randomProducts, defoltProducts: defoltproducts));
       } catch (error) {
         emit(ErrorProductsForYouState(error: error.toString()));
       }

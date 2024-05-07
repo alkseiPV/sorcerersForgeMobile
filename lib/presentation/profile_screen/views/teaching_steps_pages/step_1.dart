@@ -94,7 +94,7 @@ class Step1Teach extends StatelessWidget {
             SizedBox(
               height: 10,
               child: ListView.separated(
-                  separatorBuilder: (context, index) => SizedBox(
+                  separatorBuilder: (context, index) => const SizedBox(
                         width: 10,
                       ),
                   shrinkWrap: true,

@@ -4,6 +4,7 @@ import 'package:sourcerers_forge/domains/blocs/catalogs/state.dart';
 import 'package:sourcerers_forge/domains/usecases/catalog_usecases.dart';
 import 'package:sourcerers_forge/models/category_model.dart';
 import 'package:sourcerers_forge/models/product_model.dart';
+import 'package:sourcerers_forge/models/review_model.dart';
 
 class CatalogBloc extends Bloc<CatalogEvents, CatalogStates> {
   CatalogUseCases catalogUseCase;
@@ -18,6 +19,18 @@ class CatalogBloc extends Bloc<CatalogEvents, CatalogStates> {
       } catch (error) {
         emit(ErrorCatalogState(error: error.toString()));
       }
+    });
+
+    on<LoadReviewsEvent>((event, emit) async {
+      emit(LoadingCatalogState());
+      List<ReviewModel> reviews =
+          await catalogUseCase.loadReviews(event.idProduct);
+
+      emit(LoadedReviewState(reviews: reviews));
+    });
+
+    on<AddtoFavoriteEvent>((event, emit) async {
+      catalogUseCase.changefavorite(event.idProduct, event.added);
     });
   }
 

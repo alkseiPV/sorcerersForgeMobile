@@ -64,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                         }),
                     SizedBox(height: 10.h),
                     CustomTextField(
+                        obscuretext: true,
                         controller: read.passwordController,
                         hintText: 'password',
                         validator: (val) {
@@ -83,7 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         InkWell(
                           onTap: () {
-                            AutoRouter.of(context).push(RegistrationRoute());
+                            AutoRouter.of(context)
+                                .push(const RegistrationRoute());
                           },
                           child: Text(
                             'Зарегистрируйтесь',

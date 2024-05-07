@@ -127,7 +127,7 @@ class CreateOrderPage extends StatelessWidget {
             const Spacer(),
             CustomButton(
               ontap: () {
-                AutoRouter.of(context).push(CreateCompleteRoute());
+                AutoRouter.of(context).push(const CreateCompleteRoute());
               },
               title: 'Оформить',
               width: 120,

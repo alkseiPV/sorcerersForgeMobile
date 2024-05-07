@@ -14,6 +14,9 @@ class ProductModel extends Equatable {
   final String? photo;
   final int? category_id;
   final bool? is_active;
+  final bool? isCart;
+  final bool? isFavorite;
+
   const ProductModel({
     this.id,
     this.name,
@@ -26,6 +29,8 @@ class ProductModel extends Equatable {
     this.photo,
     this.category_id,
     this.is_active,
+    this.isCart = false,
+    this.isFavorite = false,
   });
 
   @override
@@ -40,7 +45,9 @@ class ProductModel extends Equatable {
         work_time,
         photo,
         category_id,
-        is_active
+        is_active,
+        isCart,
+        isFavorite,
       ];
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -56,6 +63,8 @@ class ProductModel extends Equatable {
       photo: json['photo'] as String?,
       category_id: json['category_id'] as int?,
       is_active: json['is_active'] as bool?,
+      isCart: json['IsCart'] as bool? ?? false,
+      isFavorite: json['IsFavorite'] as bool? ?? false,
     );
   }
 
@@ -72,6 +81,8 @@ class ProductModel extends Equatable {
       'photo': photo,
       'category_id': category_id,
       'is_active': is_active,
+      'isCart': isCart,
+      'isFavorite': isFavorite,
     };
   }
 
@@ -87,6 +98,8 @@ class ProductModel extends Equatable {
     String? photo,
     int? category_id,
     bool? is_active,
+    bool? isCart,
+    bool? isFavorite,
   }) {
     return ProductModel(
       id: id ?? this.id,
@@ -100,6 +113,8 @@ class ProductModel extends Equatable {
       photo: photo ?? this.photo,
       category_id: category_id ?? this.category_id,
       is_active: is_active ?? this.is_active,
+      isCart: isCart ?? this.isCart,
+      isFavorite: isFavorite ?? this.isFavorite,
     );
   }
 }

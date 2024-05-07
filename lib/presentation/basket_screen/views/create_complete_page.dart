@@ -31,7 +31,7 @@ class CreateCompletePage extends StatelessWidget {
           SizedBox(height: 30.h),
           CustomButton(
               ontap: () {
-                AutoRouter.of(context).replaceAll([NavigationPanel()]);
+                AutoRouter.of(context).replaceAll([const NavigationPanel()]);
               },
               title: 'На главную!',
               width: 150)

@@ -10,53 +10,71 @@ import 'package:sourcerers_forge/models/product_model.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/styles/app_colors.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/styles/app_texts.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/widgets/catalog_card.dart';
+import 'package:sourcerers_forge/presentation/UI_kit/widgets/info_card_widget.dart';
 import 'package:sourcerers_forge/presentation/catalog_screen/provider/catalog_provider.dart';
+import 'package:sourcerers_forge/presentation/home_screen/provider/home_provider.dart';
+import 'package:sourcerers_forge/routes/app_route.gr.dart';
 
 @RoutePage()
-class SubCatalogPage extends StatelessWidget {
+class SubCatalogPage extends StatefulWidget {
   final String catalogName;
   final int idCategory;
   const SubCatalogPage(
       {super.key, required this.catalogName, required this.idCategory});
 
   @override
+  State<SubCatalogPage> createState() => _SubCatalogPageState();
+}
+
+class _SubCatalogPageState extends State<SubCatalogPage> {
+  @override
+  void didChangeDependencies() {
+    setState(() {});
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final read = context.read<CatalogProvider>();
     context
         .read<CategoryProductsBloc>()
-        .add(LoadProductsEvent(idCategory: idCategory));
+        .add(LoadProductsEvent(idCategory: widget.idCategory));
     return Scaffold(
       appBar: AppBar(
-        title: TextField(
-          maxLines: 1, // Sets the maximum number of lines.
-          controller: read.searchController,
-
-          decoration: InputDecoration(
-            contentPadding:
-                EdgeInsets.only(left: 15.w), // Padding inside the text field.
-            filled: true, // Enables the fill color.
-            fillColor: AppColors.textfieldColor,
-            hintText: 'Поиск', // Placeholder text.
-            hintStyle: AppText.infoText.copyWith(fontSize: 14.sp),
-            border: const OutlineInputBorder(borderSide: BorderSide.none),
-            enabledBorder:
-                const OutlineInputBorder(borderSide: BorderSide.none),
-            focusedBorder:
-                const OutlineInputBorder(borderSide: BorderSide.none),
-            suffixIcon: Icon(
-              Icons.search,
-              color: AppColors.textPrimary,
-            ), // Displays the trailing icon if provided.
+          title: ElevatedButton(
+        onPressed: () {
+          AutoRouter.of(context).push(SearchRoute());
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.textfieldColor,
+          padding: EdgeInsets.only(left: 15.w, right: 10.w),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5.sp),
           ),
         ),
-      ),
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                'Поиск',
+                style: AppText.infoText
+                    .copyWith(fontSize: 14.sp, color: AppColors.textPrimary),
+              ),
+            ),
+            Icon(
+              Icons.search,
+              color: AppColors.textPrimary,
+            ),
+          ],
+        ),
+      )),
       body: Padding(
         padding: EdgeInsets.all(15.sp),
         child: SingleChildScrollView(
           child: Column(
             children: [
               Text(
-                catalogName,
+                widget.catalogName,
                 style: AppText.heading,
               ),
               SizedBox(
@@ -66,36 +84,47 @@ class SubCatalogPage extends StatelessWidget {
                 listener: (context, state) {},
                 builder: (context, state) {
                   if (state is LoadedCategoryProductsState) {
+                    List<ProductModel> actualProducts = context
+                        .read<HomeProvider>()
+                        .getActualList(state.products!);
                     return GridView.builder(
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 15,
-                          maxCrossAxisExtent: 200,
-                          childAspectRatio: (1 / 2)),
-                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 15,
+                              maxCrossAxisExtent: 200,
+                              childAspectRatio: (1 / 2)),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: state
                           .products?.length, // Используем количество категорий
                       shrinkWrap: true,
                       itemBuilder: (context, index) {
-                        final ProductModel product = state.products![index];
+                        final ProductModel product = actualProducts[index];
+                        print(product.isCart);
                         return SizedBox(
+                            child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            InfoCardWidget(model: product)))
+                                .then((value) {
+                              setState(() {});
+                            });
+                          },
                           child: Catalogcard(
-                            count: product.quantity,
-                            countFeedBacks: product.reviews_count?.toInt(),
-                            imgURL: product.photo,
-                            price: product.price,
-                            raiting: product.reviews_mid,
-                            title: product.name,
+                            productModel: product,
                           ),
-                        );
+                        ));
                       },
                     );
                   } else if (state is LoadingCategoryProductsState) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is ErrorCategoryProductsState) {
                     return Center(child: Text(state.error));
                   } else
-                    return Center(
+                    return const Center(
                       child: Text("Ошибка загрузки"),
                     );
                 },

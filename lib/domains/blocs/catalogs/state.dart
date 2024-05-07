@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:sourcerers_forge/models/category_model.dart';
 import 'package:sourcerers_forge/models/product_model.dart';
+import 'package:sourcerers_forge/models/review_model.dart';
 
 abstract class CatalogStates extends Equatable {
   @override
@@ -19,6 +20,14 @@ class LoadedCatalogState extends CatalogStates {
 
   @override
   List<Object?> get props => [categories, products];
+}
+
+class LoadedReviewState extends CatalogStates {
+  final List<ReviewModel> reviews;
+  LoadedReviewState({required this.reviews});
+
+  @override
+  List<Object?> get props => [reviews];
 }
 
 class ErrorCatalogState extends CatalogStates {

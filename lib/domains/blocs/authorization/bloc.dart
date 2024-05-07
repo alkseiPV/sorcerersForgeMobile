@@ -21,6 +21,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvents, AuthorizationState> {
 
     on<LogOut>((event, emit) async {
       emit(LoadingAuthState());
+      authorizationUseCase.logOut();
       await Future.delayed(const Duration(seconds: 1));
       emit(UnauthenticatedState());
     });

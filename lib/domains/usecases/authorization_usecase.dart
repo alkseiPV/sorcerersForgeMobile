@@ -16,8 +16,7 @@ class AuthorizationUseCase {
   }
 
   logOut() async {
-    await dioService.postRequest('auth/logout',
-        data: {'uid': secureStorage.readSecureData('uid')});
+    secureStorage.writeSecureData('token', '');
   }
 
   register(Map<String, dynamic> userInfo) {}

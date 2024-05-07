@@ -13,7 +13,7 @@ class SendTeachForm extends StatelessWidget {
           child: CustomButton(
               ontap: () {
                 AutoRouter.of(context).popUntilRoot();
-                AutoRouter.of(context).replaceAll([NavigationPanel()]);
+                AutoRouter.of(context).replaceAll([const NavigationPanel()]);
               },
               title: 'Подать заявку',
               width: 330)),

@@ -21,34 +21,38 @@ class CatalogPage extends StatelessWidget {
     context.read<CatalogBloc>().add(LoadCatalogEvent());
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.notifications_outlined),
-          color: AppColors.textPrimary,
-          onPressed: () {},
-        ),
-        title: TextField(
-          maxLines: 1, // Sets the maximum number of lines.
-          controller: read.searchController,
-
-          decoration: InputDecoration(
-            contentPadding:
-                EdgeInsets.only(left: 15.w), // Padding inside the text field.
-            filled: true, // Enables the fill color.
-            fillColor: AppColors.textfieldColor,
-            hintText: 'Поиск', // Placeholder text.
-            hintStyle: AppText.infoText.copyWith(fontSize: 14.sp),
-            border: const OutlineInputBorder(borderSide: BorderSide.none),
-            enabledBorder:
-                const OutlineInputBorder(borderSide: BorderSide.none),
-            focusedBorder:
-                const OutlineInputBorder(borderSide: BorderSide.none),
-            suffixIcon: Icon(
-              Icons.search,
-              color: AppColors.textPrimary,
-            ), // Displays the trailing icon if provided.
+          leading: IconButton(
+            icon: const Icon(Icons.notifications_outlined),
+            color: AppColors.textPrimary,
+            onPressed: () {},
           ),
-        ),
-      ),
+          title: ElevatedButton(
+            onPressed: () {
+              AutoRouter.of(context).push(SearchRoute());
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.textfieldColor,
+              padding: EdgeInsets.only(left: 15.w, right: 10.w),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.sp),
+              ),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Поиск',
+                    style: AppText.infoText.copyWith(
+                        fontSize: 14.sp, color: AppColors.textPrimary),
+                  ),
+                ),
+                Icon(
+                  Icons.search,
+                  color: AppColors.textPrimary,
+                ),
+              ],
+            ),
+          )),
       body: Padding(
         padding: EdgeInsets.all(15.sp),
         child: SingleChildScrollView(
@@ -67,13 +71,14 @@ class CatalogPage extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
                 } else if (state is LoadedCatalogState) {
                   return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 10,
                       maxCrossAxisExtent: 200,
                       childAspectRatio: (3 / 1),
                     ),
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: state.categories!.length,
                     shrinkWrap: true,
                     itemBuilder: (context, index) => SizedBox(

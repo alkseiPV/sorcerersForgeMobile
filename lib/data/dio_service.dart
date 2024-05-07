@@ -9,8 +9,8 @@ class DioService {
       : _dio = Dio(options ??
             BaseOptions(
               baseUrl: "http://95.165.64.208:6565",
-              connectTimeout: Duration(milliseconds: 5000),
-              receiveTimeout: Duration(milliseconds: 3000),
+              connectTimeout: const Duration(milliseconds: 5000),
+              receiveTimeout: const Duration(milliseconds: 10000),
             ));
 
   Future<String?> getToken() async {
@@ -32,7 +32,7 @@ class DioService {
       return response;
     } catch (dioError) {
       // Обработка ошибок Dio
-      throw dioError;
+      rethrow;
     }
   }
 
@@ -58,5 +58,23 @@ class DioService {
       // Обработка ошибок Dio
       throw dioError;
     } */
+  }
+
+  Future<Response> deleteRequest(String endpoint,
+      {Map<String, dynamic>? headers, dynamic data}) async {
+    try {
+      String? token = await getToken();
+      Map<String, dynamic> combinedHeaders = {
+        if (token != null) 'Authorization': 'Bearer $token',
+        ...?headers
+      };
+      final response = await _dio.delete(endpoint,
+          data: data, options: Options(headers: combinedHeaders));
+      print(response);
+      return response;
+    } catch (dioError) {
+      // Обработка ошибок Dio
+      rethrow;
+    }
   }
 }

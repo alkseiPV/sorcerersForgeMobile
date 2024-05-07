@@ -28,7 +28,7 @@ class AboutUsPage extends StatelessWidget {
                 'Наш сайт: ',
                 style: AppText.title.copyWith(fontSize: 16.sp),
               ),
-              Spacer(),
+              const Spacer(),
               TextButton(
                 onPressed: () => _launchUrl('https://example.com'),
                 child: Text('Открыть в браузере',
@@ -46,8 +46,8 @@ class AboutUsPage extends StatelessWidget {
           ),
           Row(
             children: [
-              Text('Номер: '),
-              Spacer(),
+              const Text('Номер: '),
+              const Spacer(),
               TextButton(
                 onPressed: () => _launchDialer('+79222221133'),
                 child: Text('+79222221133',
@@ -58,8 +58,8 @@ class AboutUsPage extends StatelessWidget {
           ),
           Row(
             children: [
-              Text('Почта: '),
-              Spacer(),
+              const Text('Почта: '),
+              const Spacer(),
               TextButton(
                 onPressed: () => _launchEmailClient('test@gmail.com'),
                 child: Text('test@gmail.com',
