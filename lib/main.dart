@@ -5,11 +5,12 @@ import 'package:overlay_support/overlay_support.dart';
 import 'package:sourcerers_forge/locator.dart';
 import 'package:sourcerers_forge/multi_provider.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/styles/app_colors.dart';
-
 import 'package:sourcerers_forge/routes/app_route.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await setupLocator();
+
   runApp(const SourcerersForgeApp());
 }
 

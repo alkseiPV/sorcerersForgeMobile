@@ -30,9 +30,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
         padding: EdgeInsets.all(15.sp),
         child: BlocConsumer<RegistrationBloc, RegistrationStates>(
             listener: (context, state) {
-          if (state is RegisteredState) {
-            read.clearRegData();
-            AutoRouter.of(context).popAndPush(const LoginRoute());
+          if (state is LoadedSendCodeState) {
+            AutoRouter.of(context).push(const ConfirmCodeRoute());
           }
         }, builder: (context, state) {
           if (state is InitialRegistrationState || state is UnRegisteredState) {
@@ -54,32 +53,19 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       height: 20.h,
                     ),
                     CustomTextField(
-                      controller: read.regLoginController,
-                      hintText: 'email',
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            !value.contains('@')) {
-                          return 'Введите корректный email';
-                        }
-                        return null;
-                      },
-                    ),
+                        controller: read.regLoginController,
+                        hintText: 'email',
+                        validator: (value) => read.validateEmail(value)),
                     SizedBox(height: 10.h),
                     CustomTextField(
+                      obscuretext: true,
                       controller: read.regPasswordController,
                       hintText: 'password',
-                      validator: (value) {
-                        if (value == null ||
-                            value.isEmpty ||
-                            value.length < 6) {
-                          return 'Пароль должен быть длиннее 6 символов';
-                        }
-                        return null;
-                      },
+                      validator: (value) => read.validatePassword(value),
                     ),
                     SizedBox(height: 10.h),
                     CustomTextField(
+                      obscuretext: true,
                       controller: read.confirmPasswordController,
                       hintText: 'Confirm password',
                       validator: (value) {
@@ -111,7 +97,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               child: CustomButton(
                 ontap: () {
                   if (_formKey.currentState!.validate()) {
-                    context.read<RegistrationBloc>().add(RegisterEvent(user: {
+                    context.read<RegistrationBloc>().add(GetCodeEvent(user: {
                           'email': read.regLoginController.text,
                           'password': read.confirmPasswordController.text
                         }));

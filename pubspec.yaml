@@ -52,6 +52,8 @@ dependencies:
   url_launcher: ^6.2.5
   overlay_support: ^2.1.0
   visibility_detector: ^0.4.0+2
+  connectivity_plus: ^6.0.3
+  mask_text_input_formatter: ^2.9.0
 
 dev_dependencies:
   flutter_test:

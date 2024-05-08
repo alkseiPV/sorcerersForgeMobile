@@ -9,6 +9,8 @@ class InitialRegistrationState extends RegistrationStates {}
 
 class LoadingRegistrationState extends RegistrationStates {}
 
+class LoadedSendCodeState extends RegistrationStates {}
+
 class RegisteredState extends RegistrationStates {}
 
 class UnRegisteredState extends RegistrationStates {

@@ -8,6 +8,11 @@ class RegistrationBloc extends Bloc<RegistrationEvents, RegistrationStates> {
   RegistrationUseCase registrationUseCase;
   RegistrationBloc(this.registrationUseCase)
       : super(InitialRegistrationState()) {
+    on<GetCodeEvent>((event, emit) async {
+      emit(LoadingRegistrationState());
+      await registrationUseCase.getCode(event.user);
+      emit(LoadedSendCodeState());
+    });
     on<RegisterEvent>(_onRegisterEvent);
   }
 

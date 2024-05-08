@@ -3,18 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:sourcerers_forge/routes/app_route.gr.dart';
 
 @RoutePage()
-class ProfileWrapperScreen extends StatelessWidget implements AutoRouteWrapper {
+class ProfileWrapperScreen extends StatefulWidget {
   const ProfileWrapperScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    AutoRouter.of(context).popUntilRoot();
-    return const AutoRouter();
+  State<ProfileWrapperScreen> createState() => _ProfileWrapperScreenState();
+}
+
+class _ProfileWrapperScreenState extends State<ProfileWrapperScreen> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      AutoRouter.of(context).popUntilRoot();
+    });
   }
 
   @override
-  Widget wrappedRoute(BuildContext context) {
-    return this;
+  Widget build(BuildContext context) {
+    return const AutoRouter();
   }
 }
 

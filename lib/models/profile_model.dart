@@ -7,10 +7,7 @@ class ProfileModel extends Equatable {
   final String? surname;
   final String? patronymic;
   final String? contact;
-  final String? photo;
-
-  const ProfileModel(
-      {this.contact, this.name, this.patronymic, this.surname, this.photo});
+  const ProfileModel({this.contact, this.name, this.patronymic, this.surname});
   @override
   List<Object?> get props => [
         contact,
@@ -29,7 +26,6 @@ class ProfileModel extends Equatable {
     String? photo,
   }) {
     return ProfileModel(
-      photo: photo ?? this.photo,
       name: name ?? this.name,
       surname: surname ?? this.surname,
       patronymic: patronymic ?? this.patronymic,
@@ -39,7 +35,6 @@ class ProfileModel extends Equatable {
 
   factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
-      photo: json['photo'] as String?,
       name: json['name'] as String?,
       surname: json['surname'] as String?,
       patronymic: json['patronymic'] as String?,
@@ -48,11 +43,10 @@ class ProfileModel extends Equatable {
   }
   Map<String, dynamic> toJson() {
     return {
-      'photo': photo,
       'name': name,
       'surname': surname,
       'patronymic': patronymic,
-      'contact': contact,
+      'contact': contact
     };
   }
 }

@@ -30,7 +30,7 @@ class AboutUsPage extends StatelessWidget {
               ),
               const Spacer(),
               TextButton(
-                onPressed: () => _launchUrl('https://example.com'),
+                onPressed: () => _launchUrl('http://95.165.64.208:3333/'),
                 child: Text('Открыть в браузере',
                     style:
                         AppText.title.copyWith(color: AppColors.activeColor)),
@@ -61,8 +61,8 @@ class AboutUsPage extends StatelessWidget {
               const Text('Почта: '),
               const Spacer(),
               TextButton(
-                onPressed: () => _launchEmailClient('test@gmail.com'),
-                child: Text('test@gmail.com',
+                onPressed: () => _launchEmailClient('forgesorcerers@gmail.com'),
+                child: Text('forgesorcerers@gmail.com',
                     style:
                         AppText.title.copyWith(color: AppColors.activeColor)),
               )

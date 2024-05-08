@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:sourcerers_forge/models/profile_model.dart';
 
 abstract class ProfileState extends Equatable {
   @override
@@ -10,12 +11,12 @@ class InitProfileState extends ProfileState {}
 class LoadingProfileState extends ProfileState {}
 
 class LoadedProfileState extends ProfileState {
-  final String token;
+  final ProfileModel profiledata;
 
-  LoadedProfileState({required this.token});
+  LoadedProfileState({required this.profiledata});
 
   @override
-  List<Object> get props => [token];
+  List<Object> get props => [profiledata];
 }
 
 class ErrorProfileState extends ProfileState {}

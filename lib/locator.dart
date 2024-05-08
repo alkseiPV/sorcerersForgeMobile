@@ -6,11 +6,15 @@ import 'package:sourcerers_forge/domains/blocs/cart/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/catalogs/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/category_products/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/favorite/bloc.dart';
+import 'package:sourcerers_forge/domains/blocs/orders/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/product_for_you/bloc.dart';
+import 'package:sourcerers_forge/domains/blocs/profile/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/registration/bloc.dart';
+import 'package:sourcerers_forge/domains/blocs/security/bloc.dart';
 import 'package:sourcerers_forge/domains/usecases/authorization_usecase.dart';
 import 'package:sourcerers_forge/domains/usecases/cart_usecases.dart';
 import 'package:sourcerers_forge/domains/usecases/catalog_usecases.dart';
+import 'package:sourcerers_forge/domains/usecases/profile_usecases.dart';
 import 'package:sourcerers_forge/domains/usecases/registration_usecase.dart';
 import 'package:sourcerers_forge/presentation/home_screen/provider/home_provider.dart';
 import 'package:sourcerers_forge/presentation/search_screen/provider/search_page_provider.dart';
@@ -31,6 +35,9 @@ setupLocator() async {
       .registerFactory<ProductsForYouBloc>(() => ProductsForYouBloc(locator()));
   locator.registerFactory<CartBloc>(() => CartBloc(locator()));
   locator.registerFactory<FavoriteBloc>(() => FavoriteBloc(locator()));
+  locator.registerFactory<SecurityBloc>(() => SecurityBloc(locator()));
+  locator.registerFactory<ProfileBloc>(() => ProfileBloc(locator()));
+  locator.registerFactory<OrdersBloc>(() => OrdersBloc(locator()));
 
   //UseCase
   locator
@@ -41,6 +48,8 @@ setupLocator() async {
       () => CatalogUseCases(dioService: locator(), secureStorage: locator()));
 
   locator.registerLazySingleton(() => CartUsecases(dioService: locator()));
+  locator.registerLazySingleton(
+      () => ProfileUseCases(dioService: locator(), secureStorage: locator()));
 
   //Providers
   locator.registerLazySingleton(() => HomeProvider());

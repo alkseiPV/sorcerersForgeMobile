@@ -16,11 +16,11 @@ class TeachingPage extends StatelessWidget {
       appBar: AppBar(),
       body: PageView(
         physics: const BouncingScrollPhysics(),
-        children: const <Widget>[
-          Step1Teach(),
-          Step2Teach(),
-          Step3Teach(),
-          Step4Teach(),
+        children: <Widget>[
+          const Step1Teach(),
+          const Step2Teach(),
+          const Step3Teach(),
+          const Step4Teach(),
           SendTeachForm()
         ],
       ),

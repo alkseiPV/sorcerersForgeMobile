@@ -9,6 +9,7 @@ import 'package:sourcerers_forge/presentation/UI_kit/styles/app_colors.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/styles/app_texts.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/widgets/custom_button.dart';
 import 'package:sourcerers_forge/presentation/catalog_screen/provider/catalog_provider.dart';
+import 'package:sourcerers_forge/presentation/home_screen/views/favorite_page.dart';
 import 'package:sourcerers_forge/routes/app_route.gr.dart';
 
 @RoutePage()
@@ -22,9 +23,14 @@ class CatalogPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           leading: IconButton(
-            icon: const Icon(Icons.notifications_outlined),
+            icon: const Icon(Icons.favorite),
             color: AppColors.textPrimary,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const FavoritePage()));
+            },
           ),
           title: ElevatedButton(
             onPressed: () {

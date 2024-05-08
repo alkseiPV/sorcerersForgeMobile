@@ -35,6 +35,11 @@ class _LoginPageState extends State<LoginPage> {
             AutoRouter.of(context).replace(const NavigationPanel());
           }
         }, builder: (context, state) {
+          if (state is LoadingAuthState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
           if (state is InitAuthorizationState ||
               state is UnauthenticatedState) {
             return Form(
@@ -54,25 +59,13 @@ class _LoginPageState extends State<LoginPage> {
                     CustomTextField(
                         controller: read.loginController,
                         hintText: 'email',
-                        validator: (val) {
-                          if (val == null ||
-                              val.isEmpty ||
-                              !val.contains('@')) {
-                            return 'Введите корректный e-mail!';
-                          }
-                          return null;
-                        }),
+                        validator: (val) => read.validateEmail(val)),
                     SizedBox(height: 10.h),
                     CustomTextField(
                         obscuretext: true,
                         controller: read.passwordController,
                         hintText: 'password',
-                        validator: (val) {
-                          if (val == null || val.isEmpty || val.length < 6) {
-                            return 'Введите корректный password';
-                          }
-                          return null;
-                        }),
+                        validator: (val) => read.validatePassword(val)),
                     SizedBox(height: 10.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -92,6 +85,16 @@ class _LoginPageState extends State<LoginPage> {
                             style: AppText.buttonText
                                 .copyWith(color: AppColors.activeColor),
                           ),
+                        ),
+                        Spacer(),
+                        InkWell(
+                          child: Text(
+                            'Забыли пароль?',
+                            style: AppText.buttonText,
+                          ),
+                          onTap: () {
+                            AutoRouter.of(context).push(ResetPassRoute());
+                          },
                         )
                       ],
                     )

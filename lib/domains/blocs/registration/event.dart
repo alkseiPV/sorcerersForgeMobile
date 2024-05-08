@@ -13,3 +13,12 @@ class RegisterEvent extends RegistrationEvents {
   @override
   List<Object?> get props => [user];
 }
+
+class GetCodeEvent extends RegistrationEvents {
+  final Map user;
+
+  GetCodeEvent({required this.user});
+
+  @override
+  List<Object?> get props => [user];
+}

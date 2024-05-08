@@ -6,8 +6,11 @@ import 'package:sourcerers_forge/domains/blocs/cart/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/catalogs/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/category_products/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/favorite/bloc.dart';
+import 'package:sourcerers_forge/domains/blocs/orders/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/product_for_you/bloc.dart';
+import 'package:sourcerers_forge/domains/blocs/profile/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/registration/bloc.dart';
+import 'package:sourcerers_forge/domains/blocs/security/bloc.dart';
 import 'package:sourcerers_forge/locator.dart';
 import 'package:sourcerers_forge/presentation/authorization_screen/providers/authorization_provider.dart';
 import 'package:sourcerers_forge/presentation/basket_screen/provider/basket_provider.dart';
@@ -44,6 +47,15 @@ class MultiProviderWidget extends StatelessWidget {
         ),
         BlocProvider<FavoriteBloc>(
           create: (context) => locator<FavoriteBloc>(),
+        ),
+        BlocProvider<SecurityBloc>(
+          create: (context) => locator<SecurityBloc>(),
+        ),
+        BlocProvider<ProfileBloc>(
+          create: (context) => locator<ProfileBloc>(),
+        ),
+        BlocProvider<OrdersBloc>(
+          create: (context) => locator<OrdersBloc>(),
         ),
         ChangeNotifierProvider(create: (context) => AuthorizationProvider()),
         ChangeNotifierProvider(create: (context) => BasketProvider()),

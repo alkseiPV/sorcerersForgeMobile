@@ -10,12 +10,16 @@ class ProfileBloc extends Bloc<ProfileEvents, ProfileState> {
   ProfileBloc(
     this.profileUseCase,
   ) : super(InitProfileState()) {
-    on<LoadProfileEvent>((event, emit) async {});
+    on<LoadProfileEvent>((event, emit) async {
+      emit(LoadingProfileState());
+      final resp = await profileUseCase.getProfile();
+      emit(LoadedProfileState(profiledata: resp!));
+    });
 
     on<UpdateProfileEvent>((event, emit) async {
       emit(LoadingProfileState());
-      await Future.delayed(const Duration(seconds: 1));
-      emit(ErrorProfileState());
+      await profileUseCase.updateProfile(event.profileModel);
+      emit(LoadedProfileState(profiledata: event.profileModel));
     });
   }
 }

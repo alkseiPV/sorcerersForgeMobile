@@ -48,7 +48,7 @@ class ProfilePage extends StatelessWidget {
             ),
             CustomButton(
               ontap: () {
-                AutoRouter.of(context).push(const MyDataRoute());
+                AutoRouter.of(context).push(const MyOrdersRoute());
               },
               title: 'мои Заказы',
               width: 320,
