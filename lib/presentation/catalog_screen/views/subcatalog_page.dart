@@ -11,7 +11,6 @@ import 'package:sourcerers_forge/presentation/UI_kit/styles/app_colors.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/styles/app_texts.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/widgets/catalog_card.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/widgets/info_card_widget.dart';
-import 'package:sourcerers_forge/presentation/catalog_screen/provider/catalog_provider.dart';
 import 'package:sourcerers_forge/presentation/home_screen/provider/home_provider.dart';
 import 'package:sourcerers_forge/routes/app_route.gr.dart';
 
@@ -35,7 +34,6 @@ class _SubCatalogPageState extends State<SubCatalogPage> {
 
   @override
   Widget build(BuildContext context) {
-    final read = context.read<CatalogProvider>();
     context
         .read<CategoryProductsBloc>()
         .add(LoadProductsEvent(idCategory: widget.idCategory));

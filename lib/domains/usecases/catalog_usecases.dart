@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:sourcerers_forge/data/dio_service.dart';
 import 'package:sourcerers_forge/data/secure_storage.dart';
 import 'package:sourcerers_forge/models/category_model.dart';

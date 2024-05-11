@@ -27,8 +27,6 @@ class _HomePageState extends State<HomePage> {
   late List<ProductModel> actualProducts;
   @override
   Widget build(BuildContext context) {
-    final read = context.read<HomeProvider>();
-
     return VisibilityDetector(
       key: const Key('HomeScreen'),
       onVisibilityChanged: (info) {

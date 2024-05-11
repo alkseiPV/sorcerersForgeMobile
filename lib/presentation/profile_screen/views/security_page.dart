@@ -5,7 +5,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sourcerers_forge/domains/blocs/security/bloc.dart';
 import 'package:sourcerers_forge/domains/blocs/security/event.dart';
 import 'package:sourcerers_forge/domains/blocs/security/state.dart';
-import 'package:sourcerers_forge/locator.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/styles/app_colors.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/styles/app_texts.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/widgets/custom_button.dart';
