@@ -72,7 +72,8 @@ class ProfileProvider extends ChangeNotifier {
       type: MaskAutoCompletionType.lazy);
 
   String? validateFIO(String? value, bool isname) {
-    const namePattern = r'^[a-zA-Z\-]{2,}$';
+    const namePattern = r'^[a-zA-Zа-яА-ЯёЁ\-]{2,}$';
+
     final nameRegExp = RegExp(namePattern);
 
     if ((value == null || value.isEmpty) && isname) {

@@ -34,7 +34,7 @@ class RegistrationBloc extends Bloc<RegistrationEvents, RegistrationStates> {
         emit(RegisteredState());
       } else {
         // ошибка в данных или сервере
-        emit(UnRegisteredState(error: response.data));
+        emit(UnRegisteredState(error: response.data['error']));
       }
     } catch (error) {
       // Если произошла ошибка, переходим в состояние UnRegisteredState
