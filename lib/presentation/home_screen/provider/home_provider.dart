@@ -24,6 +24,10 @@ class HomeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  ProductModel getOneProduct(int id) {
+    return allProducts.firstWhere((element) => element.id == id);
+  }
+
   getActualList(List<ProductModel> products) {
     List<ProductModel> actualProducts = [];
     for (var a in products) {

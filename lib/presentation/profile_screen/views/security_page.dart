@@ -61,7 +61,7 @@ class SecurityPage extends StatelessWidget {
                             .add(GetCodeEvent(email: null));
                       },
                       child: Text(
-                        'получить код',
+                        'Получить код',
                         style: AppText.priceText
                             .copyWith(color: AppColors.activeColor),
                       ),
@@ -70,7 +70,7 @@ class SecurityPage extends StatelessWidget {
                 ),
                 SizedBox(height: 15.h),
                 Text(
-                  'код подтверждения',
+                  'Код подтверждения',
                   style: AppText.title.copyWith(fontSize: 18.sp),
                 ),
                 SizedBox(height: 10.h),

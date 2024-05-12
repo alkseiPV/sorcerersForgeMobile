@@ -24,15 +24,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    context.read<ProductsForYouBloc>().add(LoadProductEvent());
+    super.initState();
+  }
+
   late List<ProductModel> actualProducts;
   @override
   Widget build(BuildContext context) {
     return VisibilityDetector(
       key: const Key('HomeScreen'),
       onVisibilityChanged: (info) {
-        if (info.visibleFraction == 1.0) {
-          context.read<ProductsForYouBloc>().add(LoadProductEvent());
-        }
+        if (info.visibleFraction == 1.0) {}
       },
       child: Scaffold(
         appBar: AppBar(
@@ -100,8 +104,8 @@ class _HomePageState extends State<HomePage> {
                         const SliverGridDelegateWithMaxCrossAxisExtent(
                             crossAxisSpacing: 10,
                             mainAxisSpacing: 15,
-                            maxCrossAxisExtent: 200,
-                            childAspectRatio: (1 / 2)),
+                            maxCrossAxisExtent: 300,
+                            childAspectRatio: (1 / 2.15)),
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: state
                         .products?.length, // Используем количество категорий

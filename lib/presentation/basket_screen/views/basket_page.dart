@@ -22,12 +22,6 @@ class BasketPage extends StatefulWidget {
 
 class _BasketPageState extends State<BasketPage> {
   @override
-  void initState() {
-    context.read<CartBloc>().add(LoadCartEvent());
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final read = context.read<BasketProvider>();
 
@@ -86,7 +80,7 @@ class _BasketPageState extends State<BasketPage> {
                                     imgURL: state.products[index].photo,
                                   ),
                               separatorBuilder: (context, index) => SizedBox(
-                                    height: 10.h,
+                                    height: 25.h,
                                   ),
                               itemCount: state.products.length);
                         }

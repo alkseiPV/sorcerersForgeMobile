@@ -1,6 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:sourcerers_forge/domains/blocs/product_for_you/bloc.dart';
+import 'package:sourcerers_forge/domains/blocs/product_for_you/event.dart';
 import 'package:sourcerers_forge/presentation/UI_kit/styles/app_colors.dart';
 import 'package:sourcerers_forge/routes/app_route.gr.dart';
 
@@ -34,6 +37,9 @@ class NavigationPanel extends StatelessWidget {
           onTap: (index) {
             _resetStackToRoot(context, tabsrRouter, index);
 //            tabsrRouter.setActiveIndex(index);
+            if (index == 0) {
+              context.read<ProductsForYouBloc>().add(LoadProductEvent());
+            }
           },
           items: [
             BottomNavigationBarItem(

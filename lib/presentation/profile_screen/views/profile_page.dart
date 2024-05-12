@@ -38,7 +38,7 @@ class ProfilePage extends StatelessWidget {
               ontap: () {
                 AutoRouter.of(context).push(const MyDataRoute());
               },
-              title: 'мои данные',
+              title: 'Мои данные',
               width: 320,
               height: 45,
               color: AppColors.textfieldColor,
@@ -50,7 +50,7 @@ class ProfilePage extends StatelessWidget {
               ontap: () {
                 AutoRouter.of(context).push(const MyOrdersRoute());
               },
-              title: 'мои Заказы',
+              title: 'Мои Заказы',
               width: 320,
               height: 45,
               color: AppColors.textfieldColor,

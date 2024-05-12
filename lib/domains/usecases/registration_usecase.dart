@@ -15,8 +15,9 @@ class RegistrationUseCase {
     if (resp.statusCode! <= 300) {
       Flushbar.success(title: 'Код отправлен!').show();
     } else {
-      Flushbar.error(title: 'Произошла ошибка, повторите позже!').show();
+      //Flushbar.error(title: 'Произошла ошибка, повторите позже!').show();
     }
+    return resp;
   }
 
   registration(Map user) async {

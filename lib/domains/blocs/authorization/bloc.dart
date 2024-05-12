@@ -15,7 +15,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvents, AuthorizationState> {
       if (response.statusCode == 200) {
         emit(AuthenticatedState(token: response.data["token"]));
       } else {
-        emit(UnauthenticatedState());
+        emit(UnauthenticatedState(error: response.data));
       }
     });
 
@@ -23,7 +23,7 @@ class AuthorizationBloc extends Bloc<AuthorizationEvents, AuthorizationState> {
       emit(LoadingAuthState());
       authorizationUseCase.logOut();
       await Future.delayed(const Duration(seconds: 1));
-      emit(UnauthenticatedState());
+      emit(UnauthenticatedState(error: const {'error': 'Error'}));
     });
   }
 }

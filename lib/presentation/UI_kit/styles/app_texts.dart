@@ -10,7 +10,7 @@ class AppText {
       fontFamily: 'RobotoSlab');
 
   static TextStyle title = TextStyle(
-      fontSize: 14.sp,
+      fontSize: 15.sp,
       color: AppColors.textPrimary,
       fontWeight: FontWeight.w500,
       fontFamily: 'RobotoSlab');

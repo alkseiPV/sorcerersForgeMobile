@@ -26,9 +26,100 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final read = context.read<AuthorizationProvider>();
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(15.sp),
-        child: BlocConsumer<AuthorizationBloc, AuthorizationState>(
+        body: Padding(
+          padding: EdgeInsets.all(15.sp),
+          child: BlocConsumer<AuthorizationBloc, AuthorizationState>(
+              listener: (context, state) {
+            if (state is AuthenticatedState) {
+              read.clearLoginData();
+              AutoRouter.of(context).replace(const NavigationPanel());
+            }
+          }, builder: (context, state) {
+            if (state is LoadingAuthState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            if (state is InitAuthorizationState ||
+                state is UnauthenticatedState) {
+              return Form(
+                key: _formKey,
+                child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        'SOURCERES FORGE',
+                        style: AppText.title.copyWith(fontSize: 24.sp),
+                      ),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      if (state is UnauthenticatedState &&
+                          state.error['error'] != 'Error')
+                        Text(state.error['error'],
+                            style: AppText.infoText.copyWith(
+                              color: Colors.red,
+                            )),
+                      if (state is UnauthenticatedState)
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                      CustomTextField(
+                          controller: read.loginController,
+                          hintText: 'Email',
+                          validator: (val) =>
+                              read.validateEmail(val, false, null)),
+                      SizedBox(height: 10.h),
+                      CustomTextField(
+                          obscuretext: true,
+                          controller: read.passwordController,
+                          hintText: 'Password',
+                          validator: (val) =>
+                              read.validatePassword(val, false, null)),
+                      SizedBox(height: 10.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Text(
+                            'или  ',
+                            style: AppText.infoText,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              AutoRouter.of(context)
+                                  .push(const RegistrationRoute());
+                            },
+                            child: Text(
+                              'Зарегистрируйтесь',
+                              style: AppText.infoText
+                                  .copyWith(color: AppColors.activeColor),
+                            ),
+                          ),
+                          Spacer(),
+                          InkWell(
+                            child: Text(
+                              'Забыли пароль?',
+                              style: AppText.buttonText,
+                            ),
+                            onTap: () {
+                              AutoRouter.of(context).push(ResetPassRoute());
+                            },
+                          )
+                        ],
+                      )
+                    ]),
+              );
+            }
+            if (state is AuthenticatedState) {
+              return const SizedBox.shrink();
+            }
+            return const SizedBox.shrink();
+          }),
+        ),
+        bottomSheet: BlocConsumer<AuthorizationBloc, AuthorizationState>(
             listener: (context, state) {
           if (state is AuthenticatedState) {
             read.clearLoginData();
@@ -36,96 +127,30 @@ class _LoginPageState extends State<LoginPage> {
           }
         }, builder: (context, state) {
           if (state is LoadingAuthState) {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Container(
+              color: AppColors.background,
+              height: 120.h,
             );
           }
-          if (state is InitAuthorizationState ||
-              state is UnauthenticatedState) {
-            return Form(
-              key: _formKey,
-              child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      'SOURCERES FORGE',
-                      style: AppText.title.copyWith(fontSize: 24.sp),
-                    ),
-                    SizedBox(
-                      height: 20.h,
-                    ),
-                    CustomTextField(
-                        controller: read.loginController,
-                        hintText: 'email',
-                        validator: (val) => read.validateEmail(val)),
-                    SizedBox(height: 10.h),
-                    CustomTextField(
-                        obscuretext: true,
-                        controller: read.passwordController,
-                        hintText: 'password',
-                        validator: (val) => read.validatePassword(val)),
-                    SizedBox(height: 10.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Text(
-                          'или  ',
-                          style: AppText.infoText,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            AutoRouter.of(context)
-                                .push(const RegistrationRoute());
-                          },
-                          child: Text(
-                            'Зарегистрируйтесь',
-                            style: AppText.buttonText
-                                .copyWith(color: AppColors.activeColor),
-                          ),
-                        ),
-                        Spacer(),
-                        InkWell(
-                          child: Text(
-                            'Забыли пароль?',
-                            style: AppText.buttonText,
-                          ),
-                          onTap: () {
-                            AutoRouter.of(context).push(ResetPassRoute());
-                          },
-                        )
-                      ],
-                    )
-                  ]),
-            );
-          }
-          if (state is AuthenticatedState) {
-            return const SizedBox.shrink();
-          }
-          return const SizedBox.shrink();
-        }),
-      ),
-      bottomSheet: Container(
-        color: AppColors.background,
-        height: 120.h,
-        width: double.infinity,
-        child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
-            child: CustomButton(
-              ontap: () {
-                if (_formKey.currentState!.validate()) {
-                  context.read<AuthorizationBloc>().add(LogInEvent(user: {
-                        'email': read.loginController.text,
-                        'password': read.passwordController.text
-                      }));
-                } else {}
-              },
-              title: 'Войти',
-              width: 175,
-            )),
-      ),
-    );
+          return Container(
+            color: AppColors.background,
+            height: 120.h,
+            width: double.infinity,
+            child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
+                child: CustomButton(
+                  ontap: () {
+                    if (_formKey.currentState!.validate()) {
+                      context.read<AuthorizationBloc>().add(LogInEvent(user: {
+                            'email': read.loginController.text,
+                            'password': read.passwordController.text
+                          }));
+                    } else {}
+                  },
+                  title: 'Войти',
+                  width: 175,
+                )),
+          );
+        }));
   }
 }

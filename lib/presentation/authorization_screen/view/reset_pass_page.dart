@@ -73,7 +73,7 @@ class ResetPassPage extends StatelessWidget {
                                 email: read.resetpassEmailController.text));
                           },
                           child: Text(
-                            'получить код',
+                            'Получить код',
                             style: AppText.priceText
                                 .copyWith(color: AppColors.activeColor),
                           ),
@@ -82,7 +82,7 @@ class ResetPassPage extends StatelessWidget {
                     ),
                     SizedBox(height: 15.h),
                     Text(
-                      'код подтверждения',
+                      'Код подтверждения',
                       style: AppText.title.copyWith(fontSize: 18.sp),
                     ),
                     SizedBox(height: 10.h),

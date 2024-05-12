@@ -39,7 +39,7 @@ class _CatalogcardState extends State<Catalogcard> {
     return Stack(
       children: [
         SizedBox(
-          height: 250.h,
+          height: 300.h,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -59,12 +59,15 @@ class _CatalogcardState extends State<Catalogcard> {
                           context.read<CatalogBloc>().add(AddtoFavoriteEvent(
                               idProduct: product.id!,
                               added: !product.isFavorite!));
-                          ProductModel pr = widget.productModel
-                              .copyWith(isFavorite: !product.isFavorite!);
+                          ProductModel pr = product.copyWith(
+                              isFavorite: !product.isFavorite!);
                           context.read<HomeProvider>().updateProduct(pr);
-                          product = widget.productModel
-                              .copyWith(isFavorite: !product.isFavorite!);
-                          setState(() {});
+
+                          setState(() {
+                            product = context
+                                .read<HomeProvider>()
+                                .getOneProduct(pr.id!);
+                          });
                         },
                         icon: Icon(
                             product.isFavorite!
@@ -109,12 +112,11 @@ class _CatalogcardState extends State<Catalogcard> {
                 SizedBox(width: 6.h),
                 SvgPicture.asset(
                   'assets/svg/comment.svg',
-                  colorFilter: const ColorFilter.mode(
-                      AppColors.textSecondary, BlendMode.color),
+                  height: 15.h,
                 ),
                 SizedBox(width: 6.h),
                 Text(
-                  '${widget.productModel.reviews_count} отзывов',
+                  '${widget.productModel.reviews_count!.toInt()} ${getReviewText(widget.productModel.reviews_count!.toInt())}',
                   style: AppText.infoText,
                 ),
               ],
@@ -128,13 +130,14 @@ class _CatalogcardState extends State<Catalogcard> {
                 ontap: () {
                   if (product.isCart!) {
                   } else {
-                    locator<CartBloc>().add(AddToCartEvent(
-                        productId: widget.productModel.id!, count: 1));
-                    ProductModel pr =
-                        widget.productModel.copyWith(isCart: true);
+                    locator<CartBloc>()
+                        .add(AddToCartEvent(productId: product.id!, count: 1));
+                    ProductModel pr = product.copyWith(isCart: true);
                     context.read<HomeProvider>().updateProduct(pr);
-                    product = widget.productModel.copyWith(isCart: true);
-                    setState(() {});
+                    setState(() {
+                      product =
+                          context.read<HomeProvider>().getOneProduct(pr.id!);
+                    });
                   }
                 },
                 color: product.isCart! ? AppColors.textfieldColor : null,
@@ -142,5 +145,16 @@ class _CatalogcardState extends State<Catalogcard> {
                 width: 175))
       ],
     );
+  }
+
+  String getReviewText(int count) {
+    if (count % 10 == 1 && count % 100 != 11) {
+      return 'отзыв';
+    } else if ([2, 3, 4].contains(count % 10) &&
+        ![12, 13, 14].contains(count % 100)) {
+      return 'отзыва';
+    } else {
+      return 'отзывов';
+    }
   }
 }

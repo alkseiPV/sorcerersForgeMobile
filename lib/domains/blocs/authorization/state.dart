@@ -18,4 +18,7 @@ class AuthenticatedState extends AuthorizationState {
   List<Object> get props => [token];
 }
 
-class UnauthenticatedState extends AuthorizationState {}
+class UnauthenticatedState extends AuthorizationState {
+  final Map error;
+  UnauthenticatedState({required this.error});
+}

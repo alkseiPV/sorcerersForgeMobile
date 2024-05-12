@@ -8,10 +8,12 @@ class DioService {
   DioService({BaseOptions? options, required this.secureStorage})
       : _dio = Dio(options ??
             BaseOptions(
-              baseUrl: "http://95.165.64.208:6565",
-              connectTimeout: const Duration(milliseconds: 5000),
-              receiveTimeout: const Duration(milliseconds: 10000),
-            ));
+                baseUrl: "http://95.165.64.208:6565",
+                connectTimeout: const Duration(milliseconds: 5000),
+                receiveTimeout: const Duration(milliseconds: 10000),
+                validateStatus: (status) {
+                  return status! <= 500; // Принимаем все статусы
+                }));
 
   Future<String?> getToken() async {
     String? ans = await secureStorage.readSecureData('token');

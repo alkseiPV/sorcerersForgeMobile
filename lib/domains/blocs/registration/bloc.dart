@@ -10,8 +10,14 @@ class RegistrationBloc extends Bloc<RegistrationEvents, RegistrationStates> {
       : super(InitialRegistrationState()) {
     on<GetCodeEvent>((event, emit) async {
       emit(LoadingRegistrationState());
-      await registrationUseCase.getCode(event.user);
-      emit(LoadedSendCodeState());
+      Response response = await registrationUseCase.getCode(event.user);
+
+      if (response.statusCode == 201) {
+        emit(LoadedSendCodeState());
+      } else {
+        // ошибка в данных или сервере
+        emit(UnRegisteredState(error: response.data['error']));
+      }
     });
     on<RegisterEvent>(_onRegisterEvent);
   }
@@ -30,8 +36,6 @@ class RegistrationBloc extends Bloc<RegistrationEvents, RegistrationStates> {
         // ошибка в данных или сервере
         emit(UnRegisteredState(error: response.data));
       }
-
-      emit(RegisteredState());
     } catch (error) {
       // Если произошла ошибка, переходим в состояние UnRegisteredState
       emit(UnRegisteredState(error: error.toString()));

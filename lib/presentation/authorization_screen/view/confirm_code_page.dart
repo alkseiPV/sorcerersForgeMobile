@@ -47,6 +47,19 @@ class ConfirmCodePage extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
+              if (state is UnRegisteredState)
+                Text(
+                  state.error.contains('invalid')
+                      ? 'Неверный код!'
+                      : state.error.contains('duplicate')
+                          ? "Такой пользователь уже существует!"
+                          : '',
+                  style: AppText.infoText.copyWith(color: Colors.red),
+                ),
+              if (state is UnRegisteredState)
+                SizedBox(
+                  height: 20.h,
+                ),
               CustomTextField(
                 controller: read.confirmRegCodeController,
                 hintText: 'Код подтверждения',
